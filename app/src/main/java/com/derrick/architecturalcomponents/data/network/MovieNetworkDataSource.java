@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class MovieNetworkDataSource {
     private static String LOG_TAG = MainActivity.class.getSimpleName();
-    private final static String API_KEY = "bb7ce524c99f7a42c1f154f0a7b82d50";
+    private final static String API_KEY = "";
     // For Singleton instantiation
     private static final Object LOCK = new Object();
     private static MovieNetworkDataSource sInstance;
