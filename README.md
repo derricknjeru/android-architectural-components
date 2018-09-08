@@ -1,6 +1,6 @@
 # android-architectural-components
 Demos Android Architecture Components. It's under heavy development and it meant to show case use of
-##[Architectural components](https://developer.android.com/topic/libraries/architecture)
+## [Architectural components](https://developer.android.com/topic/libraries/architecture)
 
 ## Contributing
 
