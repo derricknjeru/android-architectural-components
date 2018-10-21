@@ -1,16 +1,12 @@
-package com.derrick.architecturalcomponents.ui;
+package com.derrick.architecturalcomponents.ui.main;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.derrick.architecturalcomponents.AppExecutors;
 import com.derrick.architecturalcomponents.R;
-import com.derrick.architecturalcomponents.data.database.MovieDatabase;
 import com.derrick.architecturalcomponents.utilities.InjectorUtils;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -31,9 +27,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
 
         mRecycleView = findViewById(R.id.main_list);
         mRecycleView.setHasFixedSize(true);
@@ -49,11 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         mViewModel.getmMovie().observe(this, movieEntries -> {
 
-            Log.d(LOG_TAG, "@Movie movieEntries::" + movieEntries.size());
+            Log.d(LOG_TAG, "@Movie saved observe::" + movieEntries.size());
             adapter.setMovieEntryList(movieEntries);
 
         });
-
 
     }
 

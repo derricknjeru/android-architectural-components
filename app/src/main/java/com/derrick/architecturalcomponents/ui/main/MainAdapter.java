@@ -1,4 +1,4 @@
-package com.derrick.architecturalcomponents.ui;
+package com.derrick.architecturalcomponents.ui.main;
 
 import android.view.LayoutInflater;
 import android.view.View;

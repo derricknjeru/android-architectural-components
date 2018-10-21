@@ -2,12 +2,13 @@ package com.derrick.architecturalcomponents.data.network;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
 import com.derrick.architecturalcomponents.data.database.MovieEntry;
-import com.derrick.architecturalcomponents.ui.MainActivity;
+import com.derrick.architecturalcomponents.ui.main.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,7 +79,7 @@ public class MovieNetworkDataSource {
         Log.d(LOG_TAG, "@Movie moviesResponse::" + moviesResponse);
         Log.d(LOG_TAG, "@Movie moviesResponse size::" + moviesResponse.getmMovies().length);
 
-        mMovies.setValue(moviesResponse.getmMovies());
+        mMovies.postValue(moviesResponse.getmMovies());
 
     }
 

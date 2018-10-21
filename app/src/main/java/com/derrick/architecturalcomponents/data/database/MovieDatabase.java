@@ -27,7 +27,7 @@ public abstract class MovieDatabase extends RoomDatabase {
         if (sInstance == null) {
             synchronized (LOCK) {
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),
-                        MovieDatabase.class, MovieDatabase.DATABASE_NAME).build();
+                        MovieDatabase.class, MovieDatabase.DATABASE_NAME).fallbackToDestructiveMigration().build();
                 Log.d(LOG_TAG, "Made new database");
             }
         }

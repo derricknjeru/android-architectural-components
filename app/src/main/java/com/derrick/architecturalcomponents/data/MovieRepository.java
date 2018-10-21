@@ -1,6 +1,7 @@
 package com.derrick.architecturalcomponents.data;
 
 import androidx.lifecycle.LiveData;
+
 import android.util.Log;
 
 import com.derrick.architecturalcomponents.AppExecutors;
@@ -33,13 +34,14 @@ public class MovieRepository {
         LiveData<MovieEntry[]> networkData = mMovieNetworkDataSource.getMovies();
 
         networkData.observeForever(movieEntries -> mExecutors.diskIO().execute(() -> {
-            //delete old data
-            deleteOldMovies();
-            Log.d(LOG_TAG, "@Movie deleted");
 
-            Log.d(LOG_TAG, "@Movie deleted movieEntries"+movieEntries);
+            deleteOldMovies();
+
+            Log.d(LOG_TAG, "@Movie saved movieEntries" + movieEntries.length);
+
             //insert new movie data
-             movieDao.bulkInsert(movieEntries);
+            movieDao.bulkInsert(movieEntries);
+
             Log.d(LOG_TAG, "@Movie saved");
 
         }));
@@ -105,15 +107,13 @@ public class MovieRepository {
         return true;
     }
 
-
-    public LiveData<MovieEntry> getMoviesByDate(Date date) {
-        initializeData();
-        return mMovieDao.getMovieByDate(date);
-    }
-
     public LiveData<List<MovieEntry>> getMovies() {
         initializeData();
         return mMovieDao.getAllMovies();
+    }
+
+    public int getTotalCount() {
+        return mMovieDao.getDataCount();
     }
 
 

@@ -6,8 +6,7 @@ import com.derrick.architecturalcomponents.AppExecutors;
 import com.derrick.architecturalcomponents.data.MovieRepository;
 import com.derrick.architecturalcomponents.data.database.MovieDatabase;
 import com.derrick.architecturalcomponents.data.network.MovieNetworkDataSource;
-import com.derrick.architecturalcomponents.ui.MainActivity;
-import com.derrick.architecturalcomponents.ui.MainViewModelFactory;
+import com.derrick.architecturalcomponents.ui.main.MainViewModelFactory;
 
 public class InjectorUtils {
 
