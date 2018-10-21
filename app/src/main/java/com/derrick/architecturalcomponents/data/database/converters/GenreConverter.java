@@ -1,6 +1,6 @@
 package com.derrick.architecturalcomponents.data.database.converters;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,9 @@ public class GenreConverter {
         String[] array = genreIds.split(",");
 
         for (String s : array) {
-            list.add(Integer.parseInt(s));
+            if (!s.isEmpty()) {
+                list.add(Integer.parseInt(s));
+            }
         }
         return list;
     }

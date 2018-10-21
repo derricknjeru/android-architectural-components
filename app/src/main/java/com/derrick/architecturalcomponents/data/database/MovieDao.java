@@ -1,12 +1,13 @@
 package com.derrick.architecturalcomponents.data.database;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Query;
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * {@link Dao} which provides an api for all data operations with the {@link MovieDatabase}
@@ -33,4 +34,28 @@ public interface MovieDao {
     @Query("SELECT * FROM movies WHERE release_date = :date")
     LiveData<MovieEntry> getMovieByDate(Date date);
 
+    /**
+     * Deletes any movie data older than the given day
+     *
+     * @param date The date to delete all prior movie from (exclusive)
+     */
+    @Query("DELETE FROM movies WHERE release_date < :date")
+    void deleteOldMovies(Date date);
+
+    /**
+     * Delete all the movies
+     */
+    @Query("DELETE FROM movies")
+    void deleteOldMovies();
+
+    /**
+     * get all movies
+     *
+     * @return
+     */
+    @Query("SELECT * FROM movies")
+    LiveData<List<MovieEntry>> getAllMovies();
+
+    @Query("SELECT COUNT(id) FROM movies")
+    int getDataCount();
 }

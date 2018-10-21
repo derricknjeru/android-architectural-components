@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8a912e67f0ac2c4394f4202e5f33b2a4",
+    "identityHash": "16c22ed7af809f04d9c71150a180ab13",
     "entities": [
       {
         "tableName": "movies",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vote_count` INTEGER NOT NULL, `movie_id` INTEGER NOT NULL, `video` INTEGER NOT NULL, `vote_average` REAL NOT NULL, `title` TEXT, `popularity` REAL NOT NULL, `poster_path` TEXT, `original_languages` TEXT, `original_title` TEXT, `backdrop_path` TEXT, `adult` INTEGER NOT NULL, `overview` TEXT, `release_date` INTEGER, `genre_ids` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `vote_count` INTEGER NOT NULL, `movie_id` INTEGER NOT NULL, `video` INTEGER NOT NULL, `vote_average` REAL NOT NULL, `title` TEXT, `popularity` REAL NOT NULL, `poster_path` TEXT, `original_languages` TEXT, `original_title` TEXT, `backdrop_path` TEXT, `adult` INTEGER NOT NULL, `overview` TEXT, `release_date` INTEGER)",
         "fields": [
           {
             "fieldPath": "id",
@@ -91,12 +91,6 @@
             "columnName": "release_date",
             "affinity": "INTEGER",
             "notNull": false
-          },
-          {
-            "fieldPath": "genre_ids",
-            "columnName": "genre_ids",
-            "affinity": "TEXT",
-            "notNull": false
           }
         ],
         "primaryKey": {
@@ -120,7 +114,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"8a912e67f0ac2c4394f4202e5f33b2a4\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"16c22ed7af809f04d9c71150a180ab13\")"
     ]
   }
 }

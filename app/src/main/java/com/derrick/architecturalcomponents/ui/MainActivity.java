@@ -1,29 +1,28 @@
 package com.derrick.architecturalcomponents.ui;
 
-import android.arch.lifecycle.MutableLiveData;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.derrick.architecturalcomponents.AppExecutors;
 import com.derrick.architecturalcomponents.R;
-import com.derrick.architecturalcomponents.data.database.MovieEntry;
-import com.derrick.architecturalcomponents.data.network.ApiClient;
-import com.derrick.architecturalcomponents.data.network.ApiInterface;
-import com.derrick.architecturalcomponents.data.network.MoviesResponse;
+import com.derrick.architecturalcomponents.data.database.MovieDatabase;
+import com.derrick.architecturalcomponents.utilities.InjectorUtils;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private MovieViewModel mViewModel;
+    private RecyclerView mRecycleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +31,27 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
+
+        mRecycleView = findViewById(R.id.main_list);
+        mRecycleView.setHasFixedSize(true);
+        mRecycleView.setLayoutManager(new LinearLayoutManager(this));
+
+        final MainAdapter adapter = new MainAdapter();
+        mRecycleView.setAdapter(adapter);
+
+
+        MainViewModelFactory factory = InjectorUtils.provideMainActivityViewModelFactory(this);
+
+        mViewModel = ViewModelProviders.of(this, factory).get(MovieViewModel.class);
+
+        mViewModel.getmMovie().observe(this, movieEntries -> {
+
+            Log.d(LOG_TAG, "@Movie movieEntries::" + movieEntries.size());
+            adapter.setMovieEntryList(movieEntries);
+
         });
 
 

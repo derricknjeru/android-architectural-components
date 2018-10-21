@@ -1,6 +1,6 @@
 package com.derrick.architecturalcomponents.data.database.converters;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,11 @@ public class LanguageConverter {
     @TypeConverter
     public String writingStringFromList(List<String> list) {
         String languages = "";
-        for (String i : list) {
-            languages += "," + i;
+        if (list != null) {
+
+            for (String i : list) {
+                languages += "," + i;
+            }
         }
         return languages;
     }

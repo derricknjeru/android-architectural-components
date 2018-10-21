@@ -1,10 +1,10 @@
 package com.derrick.architecturalcomponents.data.database;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.Room;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+import androidx.room.Room;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -50,10 +50,10 @@ public class MovieEntry {
     private String overview;
     @SerializedName("release_date")
     private Date release_date;
-    @SerializedName("genre_ids")
-    private List<Integer> genre_ids = null;
+   // @SerializedName("genre_ids")
+    //private List<Integer> genre_ids = null;
 
-    public MovieEntry(int id, int vote_count, int movie_id, boolean video, double vote_average, String title, double popularity, String poster_path, List<String> original_languages, String original_title, String backdrop_path, boolean adult, String overview, Date release_date, List<Integer> genre_ids) {
+    public MovieEntry(int id, int vote_count, int movie_id, boolean video, double vote_average, String title, double popularity, String poster_path, List<String> original_languages, String original_title, String backdrop_path, boolean adult, String overview, Date release_date) {
         this.id = id;
         this.vote_count = vote_count;
         this.movie_id = movie_id;
@@ -68,7 +68,7 @@ public class MovieEntry {
         this.adult = adult;
         this.overview = overview;
         this.release_date = release_date;
-        this.genre_ids = genre_ids;
+       // this.genre_ids = genre_ids;
     }
 
     /**
@@ -90,7 +90,7 @@ public class MovieEntry {
      * @param release_date
      */
     @Ignore
-    public MovieEntry(int vote_count, int movie_id, boolean video, double vote_average, String title, double popularity, String poster_path, List<String> original_languages, String original_title, String backdrop_path, boolean adult, String overview, Date release_date, List<Integer> genre_ids) {
+    public MovieEntry(int vote_count, int movie_id, boolean video, double vote_average, String title, double popularity, String poster_path, List<String> original_languages, String original_title, String backdrop_path, boolean adult, String overview, Date release_date) {
         this.vote_count = vote_count;
         this.movie_id = movie_id;
         this.video = video;
@@ -104,7 +104,7 @@ public class MovieEntry {
         this.adult = adult;
         this.overview = overview;
         this.release_date = release_date;
-        this.genre_ids = genre_ids;
+        //this.genre_ids = genre_ids;
     }
 
     public int getId() {
@@ -160,9 +160,9 @@ public class MovieEntry {
         return release_date;
     }
 
-    public List<Integer> getGenre_ids() {
+    /*public List<Integer> getGenre_ids() {
         return genre_ids;
-    }
+    }*/
 
     public List<String> getOriginal_languages() {
         return original_languages;
